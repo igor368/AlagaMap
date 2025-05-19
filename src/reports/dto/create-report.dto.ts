@@ -1,4 +1,3 @@
-// flood-reporter-backend/src/reports/dto/create-report.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
@@ -15,4 +14,9 @@ export class CreateReportDto {
   @IsOptional()
   @IsString()
   comment?: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  street?: string;
 }
