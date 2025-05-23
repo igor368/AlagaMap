@@ -27,10 +27,16 @@ exports.AuthModule = AuthModule = __decorate([
             jwt_1.JwtModule.registerAsync({
                 imports: [config_1.ConfigModule],
                 inject: [config_1.ConfigService],
-                useFactory: async (config) => ({
-                    secret: config.get('JWT_SECRET'),
-                    signOptions: { expiresIn: config.get('JWT_EXPIRES_IN') },
-                }),
+                useFactory: async (config) => {
+                    const secret = config.get('JWT_SECRET');
+                    const expiresIn = config.get('JWT_EXPIRES_IN');
+                    console.log('JWT_SECRET no JwtModule (log de depuração):', secret);
+                    console.log('JWT_EXPIRES_IN no JwtModule (log de depuração):', expiresIn);
+                    return {
+                        secret: secret,
+                        signOptions: { expiresIn: expiresIn },
+                    };
+                },
             }),
         ],
         providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy],
